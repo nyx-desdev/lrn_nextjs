@@ -17,10 +17,25 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          <Link href="/" >Home</Link>
-          <Link href="/team" >Team</Link>
-          <Link href="/about" >About</Link>
-          <Link href="/team/aboutteam" >About team</Link>
+          <ul>
+            <li>
+              <Link
+                href="/"
+                // prefetch={false}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/team">Team</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/team/aboutteam">About team</Link>
+            </li>
+          </ul>
         </nav>
         <h1>Main Header</h1>
         {children}
