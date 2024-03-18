@@ -1,5 +1,6 @@
 async function getTodos() {
   await wait(2000);
+  throw new Error('sdfdas')
   return fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
     res.json()
   );
