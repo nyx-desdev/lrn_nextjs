@@ -1,4 +1,5 @@
-import { Suspense } from "react";
+import Link from "next/link";
+import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, Suspense } from "react";
 
 async function getTodos() {
   await wait(2000);
@@ -20,7 +21,13 @@ export default function Home() {
 
 async function TodoList() {
   const todos = await getTodos();
-  return <p>{todos.length}</p>;
+  return <ul>
+    {todos.map((todo: { id: Key | null | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => (
+      <li key={todo.id}>
+        <Link href={`todos/${todo.id}`}>{todo.title}</Link>
+      </li>
+    ))}
+  </ul>;
 }
 
 function wait(duration: number) {
