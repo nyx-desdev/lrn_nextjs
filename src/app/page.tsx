@@ -1,6 +1,17 @@
-// "use client"
+async function getTodos() {
+  await wait(2000);
+  return fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
+    res.json()
+  );
+}
 
-export default function Home() {
-  console.log("hello");
-  return <h1>Home</h1>;
+export default async function Home() {
+  const todos = await getTodos();
+  return <h1>{todos.length}</h1>;
+}
+
+function wait(duration: number) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, duration);
+  });
 }
