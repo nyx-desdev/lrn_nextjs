@@ -1,14 +1,26 @@
+import { Suspense } from "react";
+
 async function getTodos() {
   await wait(2000);
-  throw new Error('sdfdas')
   return fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
     res.json()
   );
 }
 
-export default async function Home() {
+export default function Home() {
+  return (
+    <>
+      <h1>Todos</h1>
+      <Suspense fallback="Load...">
+        <TodoList />
+      </Suspense>
+    </>
+  );
+}
+
+async function TodoList() {
   const todos = await getTodos();
-  return <h1>{todos.length}</h1>;
+  return <p>{todos.length}</p>;
 }
 
 function wait(duration: number) {
